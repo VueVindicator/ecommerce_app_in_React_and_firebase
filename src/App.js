@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import HomePage from './pages/homepage/homepage.component';
 import ShopPage from './pages/shop/shop.component'
 import Header from './components/header/header.component'
-import SignInAndRegister from './components/signin-and-register/Signin-and-register'
+import SignInAndRegister from './pages/signin-and-register/signin-and-register'
 
 import { Route, Switch } from 'react-router-dom'
 import './App.css';
