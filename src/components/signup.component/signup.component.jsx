@@ -28,7 +28,9 @@ class SignUp extends Component  {
 
         try{
             const { user } = await auth.createUserWithEmailAndPassword(email, password)
-            
+
+            createUserProfileDocument(user)
+
             this.setState({
                 displayName: '',
                 email: '',
@@ -36,7 +38,6 @@ class SignUp extends Component  {
                 confirmPassword: ''
             })
 
-            createUserProfileDocument(user, displayName)
         }catch(error){
             console.log('This is the error', error)
         }
@@ -44,7 +45,7 @@ class SignUp extends Component  {
 
     handleChange = e => {
         e.preventDefault()
-        const { name, value } = e.target()
+        const { name, value } = e.target
         this.setState({ [name] : value })
     }
 
@@ -58,7 +59,7 @@ class SignUp extends Component  {
                         type="text"
                         name="displayName"
                         label="Name"
-                        value={displayName}
+                        value={this.state.displayName}
                         handleChange={this.handleChange}
                         required
                     >
@@ -67,7 +68,7 @@ class SignUp extends Component  {
                         type="email"
                         name="email"
                         label="Email"
-                        value={email}
+                        value={this.state.email}
                         handleChange={this.handleChange}
                         required
                     >
@@ -76,7 +77,7 @@ class SignUp extends Component  {
                         type="password"
                         name="password"
                         label="Password"
-                        value={password}
+                        value={this.state.password}
                         handleChange={this.handleChange}
                         required
                     >
@@ -85,7 +86,7 @@ class SignUp extends Component  {
                         type="password"
                         name="confirmPassword"
                         label="Confrim Password"
-                        value={confirmPassword}
+                        value={this.state.confirmPassword}
                         handleChange={this.handleChange}
                         required
                     >
