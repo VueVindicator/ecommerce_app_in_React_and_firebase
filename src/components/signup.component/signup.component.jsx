@@ -17,8 +17,10 @@ class SignUp extends Component  {
         }
     }
 
-    handleSubmit = async e => {
+    handleSubmit = async (e) => {
+
         e.preventDefault()
+
         const { displayName, email, password, confirmPassword } = this.state
 
         if(password !== confirmPassword){
@@ -29,7 +31,7 @@ class SignUp extends Component  {
         try{
             const { user } = await auth.createUserWithEmailAndPassword(email, password)
 
-            createUserProfileDocument(user)
+            await createUserProfileDocument(user, { displayName })
 
             this.setState({
                 displayName: '',
@@ -50,6 +52,7 @@ class SignUp extends Component  {
     }
 
     render(){
+        const { displayName, email, password, confirmPassword } = this.state
         return (
             <div className="sign-up">
                 <h2 className="title">I do not have an account</h2>
@@ -59,7 +62,7 @@ class SignUp extends Component  {
                         type="text"
                         name="displayName"
                         label="Name"
-                        value={this.state.displayName}
+                        value={displayName}
                         handleChange={this.handleChange}
                         required
                     >
@@ -68,7 +71,7 @@ class SignUp extends Component  {
                         type="email"
                         name="email"
                         label="Email"
-                        value={this.state.email}
+                        value={email}
                         handleChange={this.handleChange}
                         required
                     >
@@ -77,7 +80,7 @@ class SignUp extends Component  {
                         type="password"
                         name="password"
                         label="Password"
-                        value={this.state.password}
+                        value={password}
                         handleChange={this.handleChange}
                         required
                     >
@@ -86,7 +89,7 @@ class SignUp extends Component  {
                         type="password"
                         name="confirmPassword"
                         label="Confrim Password"
-                        value={this.state.confirmPassword}
+                        value={confirmPassword}
                         handleChange={this.handleChange}
                         required
                     >
