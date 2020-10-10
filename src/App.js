@@ -4,7 +4,7 @@ import ShopPage from './pages/shop/shop.component'
 import Header from './components/header/header.component'
 import SignInAndRegister from './pages/signin-and-register/signin-and-register'
 
-import { auth } from './firebase/firebase.utils'
+import { auth , createUserProfileDocument} from './firebase/firebase.utils'
 import { Route, Switch } from 'react-router-dom'
 import './App.css';
 
@@ -21,7 +21,7 @@ class App extends Component {
 
   componentDidMount(){
     this.unsubscribeFromAuth = auth.onAuthStateChanged(user => { //an open subscription btw firebase and our app
-      this.setState({currentUser: user})
+      createUserProfileDocument(user)
     })
   }
 
