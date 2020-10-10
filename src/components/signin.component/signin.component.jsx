@@ -47,8 +47,10 @@ class SignIn extends React.Component {
                         handleChange={this.handleChange}
                         required
                     />
-                    <Button type="submit">Sign In</Button>
-                    <Button onClick={signInWithGoogle}>Sign in with Google</Button>
+                    <div className="buttons">
+                        <Button type="submit">Sign In</Button>
+                    <   Button onClick={signInWithGoogle} isGoogleSignIn>Sign in with Google</Button>
+                    </div>
                     {/* The children props received in the button component represents the text enclosed in the Buutton tags */}
                 </form>
             </div>
