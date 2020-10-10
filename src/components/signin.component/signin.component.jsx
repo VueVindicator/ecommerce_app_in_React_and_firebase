@@ -1,6 +1,7 @@
 import React from 'react'
 import FormInput from '../form-input/form-input.component'
 import Button from '../button-component/button-component'
+import { signInWithGoogle } from '../../firebase/firebase.utils'
 import './signin.component.scss'
 
 class SignIn extends React.Component {
@@ -47,6 +48,7 @@ class SignIn extends React.Component {
                         required
                     />
                     <Button type="submit">Sign In</Button>
+                    <Button onClick={signInWithGoogle}>Sign in with Google</Button>
                     {/* The children props received in the button component represents the text enclosed in the Buutton tags */}
                 </form>
             </div>
