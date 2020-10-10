@@ -4,10 +4,32 @@ import ShopPage from './pages/shop/shop.component'
 import Header from './components/header/header.component'
 import SignInAndRegister from './pages/signin-and-register/signin-and-register'
 
+import { auth } from './firebase/firebase.utils'
 import { Route, Switch } from 'react-router-dom'
 import './App.css';
 
-function App() {
+class App extends Component {
+  constructor(){
+    super()
+
+    this.state = {
+      currentUser: null
+    }
+  }
+
+  unsubscribeFromAuth = null
+
+  componentDidMount(){
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(user => { //an open subscription btw firebase and our app
+      this.setState({currentUser: user})
+    })
+  }
+
+  componentWillUnmount(){
+    this.unsubscribeFromAuth()
+  }
+
+  render(){
     return (
       <div className="App">
         <Header/>
@@ -18,6 +40,7 @@ function App() {
         </Switch>
       </div>
     )
+  }
 }
 
 export default App;
