@@ -15,4 +15,5 @@ const userReducer = (currentState = INITIAL_STATE, action) => {
             return currentState
     }
 }
+
 export default userReducer
